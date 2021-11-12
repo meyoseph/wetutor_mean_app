@@ -1,0 +1,48 @@
+<mat-card>
+  <form (submit)="onAddProfile(profileForm)" #profileForm="ngForm">
+    <mat-form-field>
+      <input matInput
+      placeholder="First Name"
+      name="firstname"
+      required
+      #firstname="ngModel"
+      ngModel>
+      <mat-error *ngIf="firstname.invalid">Please enter your first name</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Last Name" name="lastname" ngModel>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Age" name="age" ngModel>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Gender</mat-label>
+      <input matInput placeholder="Gender" name="gender" ngModel>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Education level</mat-label>
+      <input matInput placeholder="Education level" name="educationlevel" ngModel>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Main Subject</mat-label>
+      <input matInput placeholder="Main Subject" name="mainsubject" ngModel>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Language</mat-label>
+      <input matInput placeholder="Language" name="language" ngModel>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Image</mat-label>
+      <input matInput placeholder="Image" name="image" ngModel>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>CV</mat-label>
+      <input matInput placeholder="CV" name="cv" ngModel>
+    </mat-form-field>
+    <button
+        mat-raised-button
+        color="accent"
+        type="submit">Save</button>
+  </form>
+</mat-card>
+
