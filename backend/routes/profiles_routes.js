@@ -1,42 +1,10 @@
 const express = require('express');
 const router = express.Router();
 
-router.get('/', (req, res) => {
-  const profiles = [
-    { firstname: "yoseph",
-    lastname: "birhanu",
-    gender: "male",
-    age: 27,
-    educationlevel: "degree",
-    mainsubject: "go",
-    language: "amharic",
-    image: "test",
-    cv: "test",
-    status: "active"
-   },
-   { firstname: "yoseph",
-    lastname: "birhanu",
-    gender: "male",
-    age: 27,
-    educationlevel: "degree",
-    mainsubject: "go",
-    language: "amharic",
-    image: "test",
-    cv: "test",
-    status: "active"
-  },
-  { firstname: "yoseph",
-    lastname: "birhanu",
-    gender: "male",
-    age: 27,
-    educationlevel: "degree",
-    mainsubject: "go",
-    language: "amharic",
-    image: "test",
-    cv: "test",
-    status: "active"
-  }
-  ]
+const Profile = require('../models/profile');
+
+router.get('/', async (req, res) => {
+  const profiles = await Profile.find();
   res.status(200).json({
     message: 'Profiles fetched succcesfully',
     profiles: profiles
@@ -44,8 +12,20 @@ router.get('/', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-  const profile = req.body;
-  console.log(profile);
+  const { firstname, lastname, gender, age, educationlevel, mainsubject, language, image, cv, status } = req.body;
+  const profile = new Profile({
+    firstname: firstname,
+    lastname: lastname,
+    gender: gender,
+    age: age,
+    educationlevel: educationlevel,
+    mainsubject: mainsubject,
+    language:language,
+    image: image,
+    cv: cv,
+    status: status
+  });
+  profile.save();
   res.status(201).json({
     message: 'Profile added successfully'
   });

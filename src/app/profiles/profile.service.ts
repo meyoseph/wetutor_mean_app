@@ -48,7 +48,6 @@ export class ProfileService{
       }
       this.http.post<{ message: string}>('http://localhost:3000/api/profiles', profile).subscribe(
         (res) => {
-          console.log(res)
           this.profiles.push(profile);
           this.profileUpdated.next([...this.profiles]);
         }
