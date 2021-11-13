@@ -17,6 +17,7 @@ import { HeaderComponent } from './header/header.component';
 import { ProfileListComponent } from './profiles/profile-list/profile-list.component';
 import { AppRoutingModule } from './app-routing.component';
 import { LoginComponent } from './auth/login/login.component';
+import { SignupComponent } from './auth/signup/signup.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { LoginComponent } from './auth/login/login.component';
     HeaderComponent,
     ProfileCreateComponent,
     ProfileListComponent,
-    LoginComponent
+    LoginComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,
