@@ -2,8 +2,9 @@ const express = require('express');
 const router = express.Router();
 
 const Profile = require('../models/profile');
+const checkAuth = require('../middleware/check-auth');
 
-router.get('/', async (req, res) => {
+router.get('/', checkAuth, async (req, res) => {
   const profiles = await Profile.find();
   res.status(200).json({
     message: 'Profiles fetched succcesfully',
@@ -11,7 +12,7 @@ router.get('/', async (req, res) => {
   })
 });
 
-router.post('/', (req, res) => {
+router.post('/', checkAuth, (req, res) => {
   const { firstname, lastname, gender, age, educationlevel, mainsubject, language, image, cv, status } = req.body;
   const profile = new Profile({
     firstname: firstname,
