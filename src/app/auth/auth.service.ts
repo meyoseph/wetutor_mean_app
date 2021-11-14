@@ -2,6 +2,7 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 
 import { AuthData } from "./auth-data.model";
+import { LoginData } from "./login-data.model";
 @Injectable({ providedIn: 'root' })
 export class AuthService{
   constructor(private http: HttpClient){
@@ -11,6 +12,13 @@ export class AuthService{
     const authData: AuthData = { email: email, password: password, phonenumber: phonenumber, userType: userType };
     this.http.post('http://localhost:3000/api/users/signup', authData).subscribe(response => {
       console.log(response)
+    })
+  }
+
+  login(email: string, password: string){
+    const loginData: LoginData = { email: email, password: password }
+    this.http.post('http://localhost:3000/api/users/login', loginData).subscribe((result) => {
+      console.log(result)
     })
   }
 }
