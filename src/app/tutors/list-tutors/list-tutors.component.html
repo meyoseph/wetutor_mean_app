@@ -1,0 +1,54 @@
+<h1 class="title" *ngIf="listTutors">
+    Displaying {{listTutors.length}}  Tutors
+</h1>
+
+<div class="main-content">
+
+
+    <div>
+        <input matInput type="search" placeholder="search here" class="search-input"  [(ngModel)]="filteredString">
+        
+    </div>
+    <mat-grid-list rowHeight="2">
+    <mat-grid-list cols="3" rowHeight="2:2">
+        <mat-grid-tile *ngFor="let tutor of listTutors | filter : filteredString">
+        <mat-card class="litTutors" role="listitem">
+            <mat-card-title>
+                {{tutor.name}}
+            </mat-card-title>
+            <mat-card-content>
+                email: {{tutor.email}} <br>
+                phone: {{tutor.phone}}
+            </mat-card-content>
+            <mat-card-actions>
+                <a class="action-link" [routerLink]="['view', tutor.id]">View</a>
+            </mat-card-actions>
+        </mat-card>
+        </mat-grid-tile>
+      </mat-grid-list>
+      <mat-paginator [length]="100"
+              [pageSize]="10"
+              [pageSizeOptions]="[5, 10, 25, 100]"
+              aria-label="Select page">
+    </mat-paginator>
+    </mat-grid-list>  
+      
+    
+        <!-- <mat-card class="litTutors" role="listitem"  *ngFor="let tutor of listTutors">
+            <mat-card-title>
+                {{tutor.name}}
+            </mat-card-title>
+            <mat-card-content>
+                email: {{tutor.email}} <br>
+                phone: {{tutor.phone}}
+            </mat-card-content>
+            <mat-card-actions>
+                <a class="action-link" [routerLink]="['view', tutor.id]">View</a>
+            </mat-card-actions>
+        </mat-card>
+        <mat-paginator [length]="200" [pageSizeOptions]="[10, 50, 100]" aria-label="Select page">
+        </mat-paginator> -->
+        
+</div>
+
+

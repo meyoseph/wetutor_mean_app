@@ -1,10 +1,17 @@
-import { NgModule } from "@angular/core";
+import { Component, NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { LoginComponent } from "./login/login.component";
-import { TutorListComponent } from "./tutor/tutor-list/tutor-list.component";
+import { ListTutorsComponent } from "./tutors/list-tutors/list-tutors.component";
+import { ViewTutorsComponent } from "./tutors/view-tutors/view-tutors.component";
+//import { TutorListComponent } from "./tutor/tutor-list/tutor-list.component";
 
 const routes: Routes = [
-  { path: '', component: TutorListComponent}
+  {path: '', 
+    children: [
+      {path: '', component: ListTutorsComponent} ,
+      {path: 'view/:id', component: ViewTutorsComponent}
+  ]}
+  //{ path: '', component: TutorListComponent}
 ];
 
 @NgModule({
