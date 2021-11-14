@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
 const profileRoutes = require('./routes/profiles_routes');
+const userRoutes = require('./routes/user_routes');
 const app = express();
 
 mongoose.connect(process.env.DB_URL).then(() => {
@@ -16,5 +17,6 @@ mongoose.connect(process.env.DB_URL).then(() => {
 app.use(bodyParser.json());
 app.use(cors());
 app.use('/api/profiles', profileRoutes)
+app.use('/api/users', userRoutes)
 
 module.exports = app;
