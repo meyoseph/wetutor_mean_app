@@ -15,13 +15,15 @@ import { ProfileCreateComponent } from './profiles/profile-create/profile-create
 import { HeaderComponent } from './header/header.component';
 import { ProfileListComponent } from './profiles/profile-list/profile-list.component';
 import { AppRoutingModule } from './app-routing.component';
+import { TutorListComponent } from './tutor/tutor-list/tutor-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     ProfileCreateComponent,
-    ProfileListComponent
+    ProfileListComponent,
+    TutorListComponent
   ],
   imports: [
     BrowserModule,

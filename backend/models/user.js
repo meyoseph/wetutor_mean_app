@@ -15,11 +15,14 @@ const profileSchema = mongoose.Schema({
 });
 
 const userSchema = mongoose.Schema({
-  email: string,
-  password: string,
-  phonenumber: string,
-  location: string,
-  profile: profileSchema
-});
+  email: String,
+  password: String,
+  phonenumber: String,
+  location: String,
+  profile: profileSchema,
+  
+},
+{collection: 'user'}
+);
 
 module.exports = mongoose.model('User', userSchema);
