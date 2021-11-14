@@ -12,6 +12,6 @@ router.post("/", addUser);
 
 //search by text
 
-router.get("/search", search)
+router.get("/search/:text", search)
 
 module.exports = router;

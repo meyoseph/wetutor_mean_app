@@ -24,5 +24,6 @@ const userSchema = mongoose.Schema({
 },
 {collection: 'user'}
 );
+userSchema.index({"field.$**": 'text'})
 
 module.exports = mongoose.model('User', userSchema);
