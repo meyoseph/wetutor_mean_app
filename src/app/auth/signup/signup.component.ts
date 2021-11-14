@@ -6,6 +6,8 @@ import { AuthService } from "../auth.service"
   styleUrls: ['./signup.component.css']
 })
 export class SignupComponent{
+  userType: string = "";
+  userTypes: string[] = ['parent', 'tutor'];
   isLoading: boolean = false;
   constructor(public authService: AuthService){
   }
@@ -13,5 +15,15 @@ export class SignupComponent{
   ngOnInit(){
   }
 
-  onSignup(form: NgForm){}
+  onSignup(form: NgForm){
+    if(form.invalid){
+      return;
+    }
+    this.authService.createUser(
+      form.value.email,
+      form.value.password,
+      form.value.phonenumber,
+      this.userType
+    );
+  }
 }

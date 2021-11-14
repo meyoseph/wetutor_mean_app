@@ -21,6 +21,7 @@ const userSchema = mongoose.Schema({
   phonenumber: String,
   location: [Number],
   profile: profileSchema,
+  user_type: String
 });
 
 userSchema.plugin(uniqueValidator);

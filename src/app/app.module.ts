@@ -9,7 +9,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTableModule } from '@angular/material/table';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatRadioModule } from '@angular/material/radio';
 
 import { AppComponent } from './app.component';
 import { ProfileCreateComponent } from './profiles/profile-create/profile-create.component';;
@@ -18,6 +19,7 @@ import { ProfileListComponent } from './profiles/profile-list/profile-list.compo
 import { AppRoutingModule } from './app-routing.component';
 import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @NgModule({
   declarations: [
@@ -37,7 +39,9 @@ import { SignupComponent } from './auth/signup/signup.component';
     MatButtonModule,
     MatToolbarModule,
     MatTableModule,
+    MatFormFieldModule,
     MatProgressSpinnerModule,
+    MatRadioModule,
     HttpClientModule,
     AppRoutingModule
   ],
