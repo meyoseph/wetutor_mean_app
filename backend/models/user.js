@@ -16,18 +16,6 @@ const profileSchema = mongoose.Schema({
 });
 
 const userSchema = mongoose.Schema({
-<<<<<<< HEAD
-  email: String,
-  password: String,
-  phonenumber: String,
-  location: String,
-  profile: profileSchema,
-  
-},
-{collection: 'user'}
-);
-userSchema.index({"field.$**": 'text'})
-=======
   email: { type: String, required: true, unique: true },
   password: String,
   phonenumber: String,
@@ -35,7 +23,6 @@ userSchema.index({"field.$**": 'text'})
   profile: profileSchema,
   user_type: String
 });
->>>>>>> main
 
 userSchema.plugin(uniqueValidator);
 

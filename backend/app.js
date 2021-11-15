@@ -4,14 +4,9 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
-DB_URL= "mongodb+srv://aboneh:man1230ab@cluster0.yt5q8.mongodb.net/profiles?retryWrites=true&w=majority";
-
+DB_URL= process.env.DB_URL;
 const profileRoutes = require('./routes/profiles_routes');
-<<<<<<< HEAD
-const userRoutes = require('./routes/user_routes')
-=======
 const userRoutes = require('./routes/user_routes');
->>>>>>> main
 const app = express();
 
 mongoose.connect(DB_URL).then(() => {
@@ -24,10 +19,6 @@ app.use(bodyParser.json());
 app.use(cors());
 app.use('/api/profiles', profileRoutes)
 app.use('/api/users', userRoutes)
-<<<<<<< HEAD
-=======
-
->>>>>>> main
 module.exports = app;
 
 app.get('*', (req, res) => {

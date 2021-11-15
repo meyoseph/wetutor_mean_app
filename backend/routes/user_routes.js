@@ -1,22 +1,3 @@
-<<<<<<< HEAD
-const express = require("express");
-const { apiGetAll, apiGetOne, apiPost, apiDelete, apiUpload, search, addUser } = require("../controller/parent");
-const router = express.Router();
-
-//const router = express.Router();
-
-//get all
-router.get("/", apiGetAll);
-
-//post user
-router.post("/", addUser);
-
-//search by text
-
-router.get("/search/:text", search)
-
-module.exports = router;
-=======
 const express = require('express');
 const axios = require('axios');
 const bcrypt = require('bcrypt');
@@ -25,7 +6,10 @@ const router = express.Router();
 
 const User = require('../models/user');
 const user = require('../models/user');
+const { apiGetAll, apiGetOne, apiPost, apiDelete, apiUpload, search, addUser } = require("../controller/parent");
 
+router.get('/tutors/', apiGetAll);
+router.get('/search/:id', search);
 router.post('/signup', async (req, res, next) => {
   const response = await axios.get('https://geolocation-db.com/json/');
   const { data } = response;
@@ -82,4 +66,3 @@ router.post('/login', (req, res) => {
 });
 
 module.exports = router;
->>>>>>> main
