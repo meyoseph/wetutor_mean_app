@@ -20,3 +20,11 @@
     height: 50px;
     font-size: 20px;
 }
+
+.main-div{
+    height: 100vh;
+}
+
+mat-grid-list{
+    width: 100%;
+}
