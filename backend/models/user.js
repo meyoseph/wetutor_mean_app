@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const { stringify } = require('querystring');
+const uniqueValidator = require('mongoose-unique-validator');
 
 const profileSchema = mongoose.Schema({
   firstname: String,
@@ -15,6 +16,7 @@ const profileSchema = mongoose.Schema({
 });
 
 const userSchema = mongoose.Schema({
+<<<<<<< HEAD
   email: String,
   password: String,
   phonenumber: String,
@@ -25,5 +27,16 @@ const userSchema = mongoose.Schema({
 {collection: 'user'}
 );
 userSchema.index({"field.$**": 'text'})
+=======
+  email: { type: String, required: true, unique: true },
+  password: String,
+  phonenumber: String,
+  location: [Number],
+  profile: profileSchema,
+  user_type: String
+});
+>>>>>>> main
+
+userSchema.plugin(uniqueValidator);
 
 module.exports = mongoose.model('User', userSchema);
