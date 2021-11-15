@@ -48,10 +48,11 @@ import {MatListModule} from '@angular/material/list';
     MatTableModule,
     HttpClientModule,
     AppRoutingModule,
-
-    TutorsModule,
     MatSidenavModule,
-    MatListModule
+    MatListModule,
+
+    
+    TutorsModule,
 
   ],
   providers: [],
