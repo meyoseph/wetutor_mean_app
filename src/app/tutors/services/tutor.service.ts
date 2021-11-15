@@ -17,5 +17,4 @@ export class TutorService {
   viewUser(id: string){
     return this.http.get(this.baseUrl + 'users/' + id)
   }
-
 }
