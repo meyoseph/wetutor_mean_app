@@ -53,7 +53,9 @@ router.post('/login', (req, res) => {
       process.env.JWT_SECRETE, { expiresIn: "1h" });
     return res.status(200).json({
       token: token,
-      expiresIn: 3600
+      expiresIn: 3600,
+      userId: dbUser._id,
+      userType: dbUser.user_type
     })
   }).catch(err => {
     return res.status(401).json({ message: 'Auth Failed' })

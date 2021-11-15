@@ -8,8 +8,10 @@ import { AuthData } from "./auth-data.model";
 import { LoginData } from "./login-data.model";
 @Injectable({ providedIn: 'root' })
 export class AuthService{
-  private tokenTimer: any;
+  userId: string = '';
+  userType: string = '';
   isAuthenticated = false;
+  private tokenTimer: any;
   private tokenData: string = '';
   private authStatusListner = new Subject<boolean>();
 
@@ -60,21 +62,27 @@ export class AuthService{
 
   login(email: string, password: string){
     const loginData: LoginData = { email: email, password: password }
-    this.http.post<{ token: string, expiresIn: number }>('http://localhost:3000/api/users/login', loginData).subscribe((response) => {
+    this.http.post<{
+      token: string,
+      expiresIn: number,
+      userId: string,
+      userType: string
+     }>('http://localhost:3000/api/users/login', loginData).subscribe((response) => {
       const token = response.token;
       if(token){
         this.setAuthTimer(response.expiresIn);
-        const decodedToken: any = jwt_decode(token);
+        this.userId = response.userId;
+        this.userType = response.userType;
         this.tokenData = token;
         this.isAuthenticated = true;
         this.authStatusListner.next(true);
         const now = new Date();
         const expirationDate = new Date(now.getTime() + response.expiresIn * 1000);
         this.saveAuthData(token, expirationDate)
-        if(decodedToken.userType == "tutor"){
+        if(response.userType == "tutor"){
           this.router.navigate(['/profile'])
         }
-        if(decodedToken.userType == "parent"){
+        if(response.userType == "parent"){
           this.router.navigate(['/parent'])
         }
       }
@@ -110,5 +118,13 @@ export class AuthService{
       token: token,
       expirationDate: new Date(expirationDate)
     }
+  }
+
+  getUserId(){
+    return this.userId;
+  }
+
+  getUserType(){
+    return this.userType;
   }
 }
