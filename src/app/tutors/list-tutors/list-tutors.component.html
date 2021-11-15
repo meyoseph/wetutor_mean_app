@@ -17,7 +17,7 @@
                 phone: {{tutor.phone}}
             </mat-card-content>
             <mat-card-actions>
-                <a class="action-link" [routerLink]="['view', tutor.id]">View</a>
+                <a class="action-link" (click)="onDetail(tutor.id)">View</a>
             </mat-card-actions>
         </mat-card>
         </mat-grid-tile>

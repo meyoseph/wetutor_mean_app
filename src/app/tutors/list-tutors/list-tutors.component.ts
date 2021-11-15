@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { TutorService } from 'src/app/tutors/services/tutor.service';
 
 @Component({
@@ -12,14 +13,12 @@ export class ListTutorsComponent implements OnInit {
   listTutors : any;
   breakpoint : any;
 
-  constructor(private tutorService: TutorService) { }
+  constructor(private tutorService: TutorService, private router: Router) { }
 
   ngOnInit(): void {
     this.tutorService.listUsers().subscribe(data =>{
       this.listTutors = data;
      });
-
-
 
      this.breakpoint = (window.innerWidth <= 800) ? 1 : 5;
   }
@@ -28,4 +27,7 @@ export class ListTutorsComponent implements OnInit {
     this.breakpoint = (event.target.innerWidth <= 800) ? 1 : 5;
   }
 
+  onDetail(tutorId:string){
+    this.router.navigate([`/view/${tutorId}`])
+  }
 }
