@@ -26,8 +26,9 @@
       </mat-radio-button>
       </mat-radio-group>
     </div>
-    <button mat-raised-button color="accent" type="submit">
+    <button mat-raised-button color="accent" type="submit" *ngIf="!isLoading">
       Signup
     </button>
+    <mat-progress-spinner *ngIf="isLoading"></mat-progress-spinner>
   </form>
 </mat-card>

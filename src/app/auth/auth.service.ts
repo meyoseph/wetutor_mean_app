@@ -46,7 +46,7 @@ export class AuthService{
         if(decodedToken.userType == "tutor"){
           this.router.navigate(['/profile'])
         }
-        if(decodedToken.userType == "/parent"){
+        if(decodedToken.userType == "parent"){
           this.router.navigate(['/parent'])
         }
       }
