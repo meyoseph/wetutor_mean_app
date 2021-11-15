@@ -15,8 +15,8 @@ export class ProfileCreateComponent{
   enteredEducationLevel = ''
   enteredMainSubject = ''
   enteredLanguage = ''
-  enteredImage = ''
-  enteredCv = ''
+  // enteredImage = ''
+  // enteredCv = ''
 
   constructor(public profileService: ProfileService){}
 
@@ -31,8 +31,6 @@ export class ProfileCreateComponent{
       form.value.educationlevel,
       form.value.mainsubject,
       form.value.language,
-      form.value.image,
-      form.value.cv,
       "inactive");
       form.resetForm();
   }

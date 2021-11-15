@@ -7,8 +7,6 @@ const profileSchema = mongoose.Schema({
   educationlevel: String,
   mainsubject: String,
   language: String,
-  image: String,
-  cv: String,
   status: String
 });
 

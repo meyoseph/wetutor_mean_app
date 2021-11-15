@@ -13,7 +13,7 @@ router.get('/', checkAuth, async (req, res) => {
 });
 
 router.post('/', checkAuth, (req, res) => {
-  const { firstname, lastname, gender, age, educationlevel, mainsubject, language, image, cv, status } = req.body;
+  const { firstname, lastname, gender, age, educationlevel, mainsubject, language, status } = req.body;
   const profile = new Profile({
     firstname: firstname,
     lastname: lastname,
@@ -22,8 +22,6 @@ router.post('/', checkAuth, (req, res) => {
     educationlevel: educationlevel,
     mainsubject: mainsubject,
     language:language,
-    image: image,
-    cv: cv,
     status: status
   });
   profile.save();

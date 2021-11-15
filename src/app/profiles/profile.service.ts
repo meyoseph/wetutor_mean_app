@@ -31,8 +31,6 @@ export class ProfileService{
     educationlevel: string,
     mainsubject: string,
     language: string,
-    image: string,
-    cv: string,
     status: string){
       const profile: Profile = {
         firstname: firstname,
@@ -42,8 +40,6 @@ export class ProfileService{
         educationlevel: educationlevel,
         mainsubject: mainsubject,
         language: language,
-        image: image,
-        cv: cv,
         status: status
       }
       this.http.post<{ message: string}>('http://localhost:3000/api/profiles', profile).subscribe(
