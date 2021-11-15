@@ -78,7 +78,7 @@ export class AuthService{
         this.authStatusListner.next(true);
         const now = new Date();
         const expirationDate = new Date(now.getTime() + response.expiresIn * 1000);
-        this.saveAuthData(token, expirationDate)
+        this.saveAuthData(token, expirationDate, this.userId, this.userType);
         if(response.userType == "tutor"){
           this.router.navigate(['/profile'])
         }
@@ -98,9 +98,11 @@ export class AuthService{
     this.clearAuthData();
   }
 
-  private saveAuthData(token: string, expirationDate: Date){
+  private saveAuthData(token: string, expirationDate: Date, userId: string, userType: string){
     localStorage.setItem('token', token);
     localStorage.setItem('expiration', expirationDate.toISOString());
+    localStorage.setItem('userId', userId);
+    localStorage.setItem('userType', userType)
   }
 
   private clearAuthData(){
@@ -121,10 +123,10 @@ export class AuthService{
   }
 
   getUserId(){
-    return this.userId;
+    return localStorage.getItem("userId");
   }
 
   getUserType(){
-    return this.userType;
+    return localStorage.getItem("userType");
   }
 }
