@@ -15,6 +15,7 @@ import { ProfileCreateComponent } from './profiles/profile-create/profile-create
 import { HeaderComponent } from './header/header.component';
 import { ProfileListComponent } from './profiles/profile-list/profile-list.component';
 import { AppRoutingModule } from './app-routing.component';
+import { AngularMaterialModule } from './material/material.module';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { AppRoutingModule } from './app-routing.component';
     MatToolbarModule,
     MatTableModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    AngularMaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]
