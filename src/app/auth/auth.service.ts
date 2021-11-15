@@ -8,6 +8,7 @@ import { AuthData } from "./auth-data.model";
 import { LoginData } from "./login-data.model";
 @Injectable({ providedIn: 'root' })
 export class AuthService{
+  private tokenTimer: any;
   isAuthenticated = false;
   private tokenData: string = '';
   private authStatusListner = new Subject<boolean>();
@@ -36,9 +37,13 @@ export class AuthService{
 
   login(email: string, password: string){
     const loginData: LoginData = { email: email, password: password }
-    this.http.post<{ token: string }>('http://localhost:3000/api/users/login', loginData).subscribe((response) => {
+    this.http.post<{ token: string, expiresIn: number }>('http://localhost:3000/api/users/login', loginData).subscribe((response) => {
       const token = response.token;
       if(token){
+        console.log(this.tokenTimer)
+        this.tokenTimer = setTimeout(() => {
+          this.logout();
+        }, response.expiresIn * 1000)
         const decodedToken: any = jwt_decode(token);
         this.tokenData = token;
         this.isAuthenticated = true;
@@ -57,5 +62,7 @@ export class AuthService{
     this.tokenData = '';
     this.isAuthenticated = false;
     this.authStatusListner.next(false);
+    clearTimeout(this.tokenTimer);
+    this.router.navigate(['/login']);
   }
 }
