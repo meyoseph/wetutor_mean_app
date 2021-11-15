@@ -8,13 +8,10 @@ import { TutorService } from 'src/app/tutors/services/tutor.service';
 })
 export class ListTutorsComponent implements OnInit {
 
-
   filteredString: string = '';
-
-
-
-
   listTutors : any;
+  breakpoint : any;
+
   constructor(private tutorService: TutorService) { }
 
   ngOnInit(): void {
@@ -22,6 +19,13 @@ export class ListTutorsComponent implements OnInit {
       this.listTutors = data;
      });
 
+
+
+     this.breakpoint = (window.innerWidth <= 800) ? 1 : 5;
+  }
+
+  onResize(event: any) {
+    this.breakpoint = (event.target.innerWidth <= 800) ? 1 : 5;
   }
 
 }
