@@ -6,7 +6,5 @@ export interface Profile {
   educationlevel: string;
   mainsubject: string;
   language: string;
-  image: string;
-  cv: string;
   status: string;
 }

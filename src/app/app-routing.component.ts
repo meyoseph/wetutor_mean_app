@@ -10,13 +10,16 @@ import { ListTutorsComponent } from "./tutors/list-tutors/list-tutors.component"
 import { ViewTutorsComponent } from "./tutors/view-tutors/view-tutors.component";
 
 const routes: Routes = [
+  {path: '', component: ListTutorsComponent, canActivate: [AuthGuard]},
   { path: 'login', component: LoginComponent},
   { path: 'signup', component: SignupComponent},
   { path: 'profile', component: ProfileCreateComponent, canActivate: [AuthGuard] },
   {path: 'parent', component: ListTutorsComponent} ,
   {path: 'view/:id', component: ViewTutorsComponent},
   { path: 'admin', component: UsersListComponent},
-  {path:'admin/view/:id',component:UserDetailComponent}
+  {path:'admin/view/:id',component:UserDetailComponent},
+  {path: 'parent', component: ListTutorsComponent, canActivate: [AuthGuard]} ,
+  {path: 'view/:id', component: ViewTutorsComponent, canActivate: [AuthGuard]}
 ];
 
 @NgModule({
