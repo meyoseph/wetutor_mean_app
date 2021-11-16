@@ -19,7 +19,7 @@ module.exports.apiGetAll = async (req, res,next) => {
   //   res.json(response)
   // })
   User.find({ 'profile.status': "active", user_type: "tutor" }).then(response => {
-    res.json(response)
+    res.status(200).json({ result: response})
   })
 }
 

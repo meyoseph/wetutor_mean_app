@@ -86,6 +86,9 @@ export class AuthService{
         if(response.userType == "parent"){
           this.router.navigate(['/parent'])
         }
+        if(response.userType == "admin"){
+          this.router.navigate(['/admin']);
+        }
       }
     })
   }

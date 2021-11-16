@@ -1,13 +1,19 @@
-
-<!-- <div *ngIf="tutorDetails">
-    {{tutorDetails}}
-</div> -->
-
-<mat-card class="tutorDetails" *ngIf="tutorDetails"> 
+<div class="main-div">
+  <mat-card class="tutorDetails">
     <mat-card-title class="title">
-        {{tutorDetails.name}}
+        <p>Tutor Information</p>
     </mat-card-title>
     <mat-card-content>
-        {{tutorObject}}
+      <mat-list>
+        <mat-list-item> firstname:  {{ firstname }} </mat-list-item>
+        <mat-list-item> lastname: {{ lastname }} </mat-list-item>
+        <mat-list-item> gender: {{ gender }} </mat-list-item>
+        <mat-list-item> age: {{ age }} </mat-list-item>
+        <mat-list-item> education level: {{ educationlevel }} </mat-list-item>
+        <mat-list-item> subject: {{ mainsubject }} </mat-list-item>
+        <mat-list-item> Language: {{ language }} </mat-list-item>
+       </mat-list>
     </mat-card-content>
 </mat-card>
+
+</div>

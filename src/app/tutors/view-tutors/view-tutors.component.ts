@@ -9,7 +9,14 @@ import { TutorService } from 'src/app/tutors/services/tutor.service';
 export class ViewTutorsComponent implements OnInit {
 
   tutorId: string = '';
-  tutorDetails: any; 
+  firstname: string = '';
+  lastname: string = '';
+  gender: string = '';
+  age: number = 27;
+  educationlevel: string = '';
+  mainsubject: string = '';
+  language: string = '';
+  tutorDetails: any;
   tutorObject: any;
 
   constructor(private tutorService: TutorService, private avtivatedRoute: ActivatedRoute) { }
@@ -18,7 +25,13 @@ export class ViewTutorsComponent implements OnInit {
 
     this.avtivatedRoute.params.subscribe(data => {
         this.tutorId = data['id'];
-        console.log(data)
+        this.firstname = data['firstname'];
+        this.lastname = data['lastname'];
+        this.gender = data['gender'];
+        this.age = data['age'];
+        this.educationlevel = data['educationlevel'];
+        this.mainsubject = data['mainsubject'];
+        this.language = data['language'];
     })
 
     this.tutorService.viewUser(this.tutorId).subscribe(data=>{
