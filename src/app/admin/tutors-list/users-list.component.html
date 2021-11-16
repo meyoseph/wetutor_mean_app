@@ -1,0 +1,46 @@
+<div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource"  matSort matSortActive="name" matSortDirection="asc" >
+      <!-- Position Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by name"> Name </th>
+        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+      </ng-container>
+    
+      <!-- Name Column -->
+      <ng-container matColumnDef="username">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Username">Username </th>
+        <td mat-cell *matCellDef="let element"> {{element.username}} </td>
+      </ng-container>
+    
+      <!-- Weight Column -->
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by name"> Email </th>
+        <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+      </ng-container>
+    
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="phone">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by phone"> Phone </th>
+        <td mat-cell *matCellDef="let element"> {{element.phone}} </td>
+      </ng-container>
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef> Actions </th>
+        <td mat-cell *matCellDef="let element; index as i"> 
+          <div class="example-button-row">
+            <button mat-raised-button style="margin-right: 10px;background-color: rgb(18, 201, 140);">Activate</button>
+            <button mat-raised-button color="primary" style="margin-right: 10px;"  (click)="onDetail(element.id)"><mat-icon>details</mat-icon></button>
+            <button mat-raised-button color="warn"  (click)="removeUser(i)"><mat-icon>delete</mat-icon></button>
+          </div>
+        </td>
+      </ng-container>
+    
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;" ></tr>
+    
+    </table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                     showFirstLastButtons [pageSize]="5"
+                     aria-label="Select page">
+      </mat-paginator>
+
+</div>

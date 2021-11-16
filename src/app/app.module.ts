@@ -16,13 +16,17 @@ import { HeaderComponent } from './header/header.component';
 import { ProfileListComponent } from './profiles/profile-list/profile-list.component';
 import { AppRoutingModule } from './app-routing.component';
 import { AngularMaterialModule } from './material/material.module';
+import { UsersListComponent } from './admin/tutors-list/users-list.component';
+import { UserDetailComponent } from './admin/user-detail/user-detail.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     ProfileCreateComponent,
-    ProfileListComponent
+    ProfileListComponent,
+    UsersListComponent,
+    UserDetailComponent
   ],
   imports: [
     BrowserModule,
