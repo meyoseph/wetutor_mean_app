@@ -3,13 +3,14 @@ import { Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Profile } from './profile.model';
 import { AuthService } from '../auth/auth.service';
+import { Router } from '@angular/router';
 
 @Injectable({ providedIn: 'root' })
 export class ProfileService{
   private profiles: Profile[] = [];
   private profileUpdated = new Subject<Profile[]>();
 
-  constructor(private http: HttpClient, private authService: AuthService){
+  constructor(private http: HttpClient, private authService: AuthService, private router: Router){
   }
 
   getProfiles(){
@@ -47,9 +48,9 @@ export class ProfileService{
       console.log(userId)
       this.http.post<{ message: string}>(`http://localhost:3000/api/profiles/${userId}`, profile).subscribe(
         (res) => {
-          console.log(res)
           this.profiles.push(profile);
           this.profileUpdated.next([...this.profiles]);
+          this.router.navigate([`/profile/detail/${userId}`]);
         }
       );
   }
