@@ -20,7 +20,7 @@ const userSchema = mongoose.Schema({
   password: String,
   phonenumber: String,
   location: [Number],
-  profile: profileSchema,
+  profile: Object,
   user_type: String
 });
 

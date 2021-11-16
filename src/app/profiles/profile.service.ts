@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Profile } from './profile.model';
+import { AuthService } from '../auth/auth.service';
 
 @Injectable({ providedIn: 'root' })
 export class ProfileService{
   private profiles: Profile[] = [];
   private profileUpdated = new Subject<Profile[]>();
 
-  constructor(private http: HttpClient){
+  constructor(private http: HttpClient, private authService: AuthService){
   }
 
   getProfiles(){
@@ -42,8 +43,11 @@ export class ProfileService{
         language: language,
         status: status
       }
-      this.http.post<{ message: string}>('http://localhost:3000/api/profiles', profile).subscribe(
+      const userId = this.authService.getUserId();
+      console.log(userId)
+      this.http.post<{ message: string}>(`http://localhost:3000/api/profiles/${userId}`, profile).subscribe(
         (res) => {
+          console.log(res)
           this.profiles.push(profile);
           this.profileUpdated.next([...this.profiles]);
         }

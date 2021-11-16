@@ -1,8 +1,10 @@
 const express = require('express');
 const router = express.Router();
+const mongoose = require('mongoose');
 
 const Profile = require('../models/profile');
 const checkAuth = require('../middleware/check-auth');
+const User = require('../models/user');
 
 router.get('/', checkAuth, async (req, res) => {
   const profiles = await Profile.find();
@@ -12,22 +14,13 @@ router.get('/', checkAuth, async (req, res) => {
   })
 });
 
-router.post('/', checkAuth, (req, res) => {
-  const { firstname, lastname, gender, age, educationlevel, mainsubject, language, status } = req.body;
-  const profile = new Profile({
-    firstname: firstname,
-    lastname: lastname,
-    gender: gender,
-    age: age,
-    educationlevel: educationlevel,
-    mainsubject: mainsubject,
-    language:language,
-    status: status
-  });
-  profile.save();
-  res.status(201).json({
-    message: 'Profile added successfully'
-  });
+router.post('/:id', checkAuth, (req, res) => {
+  User.updateOne({ _id: req.params.id }, { profile: req.body }).then(response => {
+    res.status(201).json({
+      message: 'Profile added successfully',
+      result: response
+    });
+  })
 })
 
 module.exports = router;

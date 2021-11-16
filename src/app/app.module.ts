@@ -28,11 +28,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { AuthInterceptor } from './auth/auth-interceptor';
 import { FooterComponent } from './footer/footer.html';
 
-//import { TutorListComponent } from './tutor/tutor-list/tutor-list.component';
 
-//my imports
 import { TutorsModule } from './tutors/tutors.module';
 import {MatListModule} from '@angular/material/list';
+import { ProfileDetailComponent } from './profiles/profile-detail/profile-detail.component';
 
 
 
@@ -44,7 +43,8 @@ import {MatListModule} from '@angular/material/list';
     ProfileListComponent,
     LoginComponent,
     SignupComponent,
-    FooterComponent
+    FooterComponent,
+    ProfileDetailComponent
   ],
   imports: [
     BrowserModule,
