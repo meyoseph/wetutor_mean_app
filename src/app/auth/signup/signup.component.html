@@ -1,0 +1,37 @@
+<div class="main-div">
+  <div class="signup">
+    <mat-card>
+      <mat-progress-spinner *ngIf="isLoading"></mat-progress-spinner>
+      <form (submit)="onSignup(signupForm)" #signupForm="ngForm">
+        <mat-form-field>
+          <input matInput type="email" ngModel placeholder="Email" name="email" #emailInput="ngModel" required email>
+          <mat-error *ngIf="emailInput.invalid">Please enter a valid email</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput type="password" placeholder="Password" name="password" ngModel #passwordInput="ngModel" required>
+          <mat-error *ngIf="">Please enter a valid password</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Phonenumber" name="phonenumber" ngModel #phonenumberInput="ngModel" required>
+          <mat-hint>Include area code</mat-hint>
+          <mat-error *ngIf="">Please enter a valid phonenumber</mat-error>
+        </mat-form-field>
+
+        <div>
+          <mat-label>Register As?</mat-label>
+         <mat-radio-group
+          aria-label="Register As?"
+          name="userType"
+          [(ngModel)]="userType">
+          <mat-radio-button class="radio-button" *ngFor="let usertype of userTypes" [value]="usertype">
+            {{ usertype }}
+          </mat-radio-button>
+          </mat-radio-group>
+        </div>
+        <button mat-raised-button color="accent" type="submit" *ngIf="!isLoading">
+          Signup
+        </button>
+      </form>
+    </mat-card>
+  </div>
+</div>

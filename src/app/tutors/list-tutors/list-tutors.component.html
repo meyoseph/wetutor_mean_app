@@ -1,0 +1,41 @@
+<div class="main-div">
+    <div class="main-list">
+        <h1 class="title" *ngIf="listTutors">
+            List of Available Tutors
+        </h1>
+        
+        <div class="main-content">
+            
+            <mat-grid-list cols="1" rowHeight="3">
+                <input matInput type="search" placeholder="search here" class="search-input"  [(ngModel)]="filteredString">
+               <mat-grid-list [cols]="breakpoint"  rowHeight="2:2" (window:resize)="onResize($event)">
+                <mat-grid-tile *ngFor="let tutor of listTutors | filter : filteredString">
+                <mat-card class="litTutors" role="listitem">
+                    <mat-card-title>
+                        {{tutor.name}}
+                    </mat-card-title>
+                    <mat-card-content>
+                        email: {{tutor.email}} <br>
+                        phone: {{tutor.phone}}
+                    </mat-card-content>
+                    <mat-card-actions>
+                        <a class="action-link" (click)="onDetail(tutor.id)">View</a>
+                    </mat-card-actions>
+                </mat-card>
+                </mat-grid-tile>
+              </mat-grid-list>
+              
+              <mat-paginator [length]="100"
+                      [pageSize]="10"
+                      [pageSizeOptions]="[5, 10, 25, 100]"
+                      aria-label="Select page">
+            </mat-paginator>
+            </mat-grid-list>  
+        
+        
+        </div>
+        
+        
+        
+    </div>
+</div>

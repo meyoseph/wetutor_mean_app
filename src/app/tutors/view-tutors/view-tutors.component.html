@@ -1,0 +1,13 @@
+
+<!-- <div *ngIf="tutorDetails">
+    {{tutorDetails}}
+</div> -->
+
+<mat-card class="tutorDetails" *ngIf="tutorDetails"> 
+    <mat-card-title class="title">
+        {{tutorDetails.name}}
+    </mat-card-title>
+    <mat-card-content>
+        {{tutorObject}}
+    </mat-card-content>
+</mat-card>
