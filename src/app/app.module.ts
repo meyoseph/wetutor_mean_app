@@ -31,6 +31,9 @@ import { FooterComponent } from './footer/footer.html';
 
 import { TutorsModule } from './tutors/tutors.module';
 import {MatListModule} from '@angular/material/list';
+import { UsersListComponent } from './admin/tutors-list/users-list.component';
+import { UserDetailComponent } from './admin/user-detail/user-detail.component';
+import { AngularMaterialModule } from './material/material.module';
 import { ProfileDetailComponent } from './profiles/profile-detail/profile-detail.component';
 
 
@@ -44,6 +47,8 @@ import { ProfileDetailComponent } from './profiles/profile-detail/profile-detail
     LoginComponent,
     SignupComponent,
     FooterComponent,
+    UsersListComponent,
+    UserDetailComponent,
     ProfileDetailComponent
   ],
   imports: [
@@ -63,7 +68,7 @@ import { ProfileDetailComponent } from './profiles/profile-detail/profile-detail
     MatSidenavModule,
     MatListModule,
     TutorsModule,
-
+    AngularMaterialModule
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],
   bootstrap: [AppComponent]

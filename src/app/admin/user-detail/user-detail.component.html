@@ -1,0 +1,21 @@
+<mat-card class="tutorDetails" *ngIf="tutorDetails"> 
+    <mat-card-title class="title">
+        {{tutorDetails.name}}
+    </mat-card-title>
+    <mat-card-content center>
+       <table style="width: 100%; font-size: larger;">
+           <tr>
+               <td style="text-align: center;">Name</td>
+               <td>{{tutorDetails.name}}</td>
+           </tr>
+           <tr>
+            <td style="text-align: center;">username</td>
+            <td>{{tutorDetails.username}}</td>
+        </tr>
+        <tr>
+            <td style="text-align: center;">Email</td>
+            <td>{{tutorDetails.email}}</td>
+        </tr>
+       </table>       
+    </mat-card-content>
+</mat-card>
