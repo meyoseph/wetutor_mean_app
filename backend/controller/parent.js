@@ -23,14 +23,14 @@ module.exports.apiGetAll = async (req, res,next) => {
   })
 }
 
-module.exports.search =  async (req, res, next) => {
-   // const {text} = req.params.
-    await User.find({$text : {$search: req.params.text}},
-    (error, data) => {
-        if (error) {
-          return next(error)
-        } else {
-          res.json(data)
-        }
-    }).clone()
-   }
+// module.exports.search =  async (req, res, next) => {
+//    // const {text} = req.params.
+//     await User.find({$text : {$search: req.params.text}},
+//     (error, data) => {
+//         if (error) {
+//           return next(error)
+//         } else {
+//           res.json(data)
+//         }
+//     }).clone()
+// }

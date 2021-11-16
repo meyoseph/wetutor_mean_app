@@ -24,10 +24,6 @@ export class ListTutorsComponent implements OnInit, OnDestroy {
       this.listTutors = response
     })
 
-    // this.tutorService.listUsers().subscribe(data =>{
-    //   this.listTutors = data;
-    //  });
-
      this.breakpoint = (window.innerWidth <= 800) ? 1 : 5;
   }
 

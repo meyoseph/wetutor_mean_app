@@ -13,5 +13,4 @@ export interface User {
     status: string;
   },
   user_type: string;
-
 }
