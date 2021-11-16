@@ -8,7 +8,7 @@ const User = require('../models/user');
 const user = require('../models/user');
 const { apiGetAll, apiGetOne, apiPost, apiDelete, apiUpload, search, addUser } = require("../controller/parent");
 
-router.get('/tutors/', apiGetAll);
+router.get('/tutors/:id', apiGetAll);
 router.get('/search/:id', search);
 router.post('/signup', async (req, res, next) => {
   const response = await axios.get('https://geolocation-db.com/json/');

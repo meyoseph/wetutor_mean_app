@@ -19,7 +19,7 @@ const userSchema = mongoose.Schema({
   email: { type: String, required: true, unique: true },
   password: String,
   phonenumber: String,
-  location: [Number],
+  location: { type: [Number], index: '2dsphere'},
   profile: Object,
   user_type: String
 });

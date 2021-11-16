@@ -70,6 +70,7 @@ export class AuthService{
      }>('http://localhost:3000/api/users/login', loginData).subscribe((response) => {
       const token = response.token;
       if(token){
+        console.log(response)
         this.setAuthTimer(response.expiresIn);
         this.userId = response.userId;
         this.userType = response.userType;
