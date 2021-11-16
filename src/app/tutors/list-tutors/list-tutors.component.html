@@ -1,26 +1,39 @@
 <div class="main-div">
     <div class="main-list">
-        <h1 class="title" *ngIf="listTutors">
+        <div class="pageTitle">
+          <h2 class="title" *ngIf="listTutors">
             List of Available Tutors
-        </h1>
+          </h2>
+        </div>
+
+        <div class="search_input">
+          <input matInput type="search" placeholder="search here..." class="search-input"  [(ngModel)]="filteredString" appearance="fill">
+        </div>
 
         <div class="main-content">
-
             <mat-grid-list cols="1" rowHeight="3">
-                <input matInput type="search" placeholder="search here" class="search-input"  [(ngModel)]="filteredString">
                <mat-grid-list [cols]="breakpoint"  rowHeight="2:2" (window:resize)="onResize($event)">
                 <mat-grid-tile *ngFor="let tutor of listTutors | filter : filteredString">
-                <mat-card class="litTutors" role="listitem">
-                    <mat-card-title>
+                <mat-card class="litTutors" role="listitem" (click)="onDetail(tutor._id, tutor.profile.firstname, tutor.profile.lastname, tutor.profile.gender, tutor.profile.age, tutor.profile.educationlevel, tutor.profile.mainsubject, tutor.profile.language)">
+                    <mat-card-title class="profilename">
                         {{tutor.profile?.firstname}}
                     </mat-card-title>
                     <mat-card-content>
-                        email: {{tutor.email}} <br>
-                        phone: {{tutor.phonenumber}}
+                      <mat-list>
+                        <mat-list-item>
+                          <span class="align-icon">
+                            <mat-icon aria-hidden="false" aria-label="Example home icon">email</mat-icon>
+                            {{tutor.email}}
+                          </span>
+                        </mat-list-item>
+                        <mat-list-item>
+                          <span>
+                            <mat-icon aria-hidden="false" aria-label="Example home icon">phone</mat-icon>
+                            {{tutor.phonenumber}}
+                          </span>
+                        </mat-list-item>
+                       </mat-list>
                     </mat-card-content>
-                    <mat-card-actions>
-                        <a class="action-link" (click)="onDetail(tutor._id, tutor.profile.firstname, tutor.profile.lastname, tutor.profile.gender, tutor.profile.age, tutor.profile.educationlevel, tutor.profile.mainsubject, tutor.profile.language)">View</a>
-                    </mat-card-actions>
                 </mat-card>
                 </mat-grid-tile>
               </mat-grid-list>
