@@ -14,13 +14,10 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent},
   { path: 'signup', component: SignupComponent},
   { path: 'profile', component: ProfileCreateComponent, canActivate: [AuthGuard] },
-<<<<<<< HEAD
   {path: 'parent', component: ListTutorsComponent} ,
   {path: 'view/:id', component: ViewTutorsComponent},
   { path: 'admin', component: UsersListComponent},
   {path:'admin/view/:id',component:UserDetailComponent},
-=======
->>>>>>> 7a7e8e8 (removes cv and image)
   {path: 'parent', component: ListTutorsComponent, canActivate: [AuthGuard]} ,
   {path: 'view/:id', component: ViewTutorsComponent, canActivate: [AuthGuard]}
 ];
