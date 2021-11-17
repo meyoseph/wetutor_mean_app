@@ -3,6 +3,7 @@ import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 import { Subject } from "rxjs";
 import jwt_decode from "jwt-decode";
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 import { AuthData } from "./auth-data.model";
 import { LoginData } from "./login-data.model";
@@ -15,7 +16,7 @@ export class AuthService{
   private tokenData: string = '';
   private authStatusListner = new Subject<boolean>();
 
-  constructor(private http: HttpClient, private router: Router){
+  constructor(private http: HttpClient, private router: Router, private _snackBar: MatSnackBar){
   }
 
   getAuthStatusListner(){
@@ -60,6 +61,10 @@ export class AuthService{
     }
   }
 
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action);
+  }
+
   login(email: string, password: string){
     const loginData: LoginData = { email: email, password: password }
     this.http.post<{
@@ -82,9 +87,15 @@ export class AuthService{
         this.saveAuthData(token, expirationDate, this.userId, this.userType);
         if(response.userType == "tutor"){
           this.router.navigate(['/profile'])
+          this.openSnackBar('Logged in', 'Dismiss')
         }
         if(response.userType == "parent"){
           this.router.navigate(['/parent'])
+          this.openSnackBar('Logged in', 'Dismiss')
+        }
+        if(response.userType == "admin"){
+          this.router.navigate(['/admin']);
+          this.openSnackBar('Logged in', 'Dismiss')
         }
       }
     })
@@ -97,6 +108,7 @@ export class AuthService{
     clearTimeout(this.tokenTimer);
     this.router.navigate(['/login']);
     this.clearAuthData();
+    this.openSnackBar('Logged out', 'Dismiss')
   }
 
   private saveAuthData(token: string, expirationDate: Date, userId: string, userType: string){
