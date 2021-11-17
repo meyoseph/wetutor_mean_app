@@ -2,12 +2,16 @@
     <div class="main-list">
         <div class="pageTitle">
           <h2 class="title" *ngIf="listTutors">
-            List of Available Tutors
+            Tutors
           </h2>
         </div>
 
         <div class="search_input">
-          <input matInput type="search" placeholder="search here..." class="search-input"  (keyup)="onSearch($event)" appearance="fill">
+          <mat-card>
+            <mat-card-content>
+              <input matInput type="search" placeholder="search here..." class="search-input"  (keyup)="onSearch($event)" appearance="fill">
+            </mat-card-content>
+          </mat-card>
         </div>
 
         <div class="main-content">
