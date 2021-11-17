@@ -7,29 +7,29 @@
         </div>
 
         <div class="search_input">
-          <input matInput type="search" placeholder="search here..." class="search-input"  [(ngModel)]="filteredString" appearance="fill">
+          <input matInput type="search" placeholder="search here..." class="search-input"  (keyup)="onSearch($event)" appearance="fill">
         </div>
 
         <div class="main-content">
             <mat-grid-list cols="1" rowHeight="3">
                <mat-grid-list [cols]="breakpoint"  rowHeight="2:2" (window:resize)="onResize($event)">
                 <mat-grid-tile *ngFor="let tutor of listTutors | filter : filteredString">
-                <mat-card class="litTutors" role="listitem" (click)="onDetail(tutor._id, tutor.profile.firstname, tutor.profile.lastname, tutor.profile.gender, tutor.profile.age, tutor.profile.educationlevel, tutor.profile.mainsubject, tutor.profile.language)">
+                <mat-card class="litTutors" role="listitem" (click)="onDetail(tutor._source._id, tutor._source.profile.firstname, tutor._source.profile.lastname, tutor._source.profile.gender, tutor._source.profile.age, tutor._source.profile.educationlevel, tutor._source.profile.mainsubject, tutor._source.profile.language)">
                     <mat-card-title class="profilename">
-                        {{tutor.profile?.firstname}}
+                        {{tutor._source.profile?.firstname}}
                     </mat-card-title>
                     <mat-card-content>
                       <mat-list>
                         <mat-list-item>
                           <span class="align-icon">
                             <mat-icon aria-hidden="false" aria-label="Example home icon">email</mat-icon>
-                            {{tutor.email}}
+                            {{tutor._source.email}}
                           </span>
                         </mat-list-item>
                         <mat-list-item>
                           <span>
                             <mat-icon aria-hidden="false" aria-label="Example home icon">phone</mat-icon>
-                            {{tutor.phonenumber}}
+                            {{tutor._source.profile.phonenumber}}
                           </span>
                         </mat-list-item>
                        </mat-list>

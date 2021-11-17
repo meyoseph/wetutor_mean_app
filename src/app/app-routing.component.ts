@@ -11,7 +11,7 @@ import { ListTutorsComponent } from "./tutors/list-tutors/list-tutors.component"
 import { ViewTutorsComponent } from "./tutors/view-tutors/view-tutors.component";
 
 const routes: Routes = [
-  {path: '', redirectTo: 'parent'},
+  {path: '', redirectTo: 'parent', pathMatch: 'full'},
   { path: 'login', component: LoginComponent},
   { path: 'signup', component: SignupComponent},
   { path: 'profile', component: ProfileCreateComponent, canActivate: [AuthGuard] },

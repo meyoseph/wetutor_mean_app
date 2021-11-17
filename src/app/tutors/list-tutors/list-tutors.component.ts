@@ -38,4 +38,13 @@ export class ListTutorsComponent implements OnInit, OnDestroy {
   onDetail(tutorId:string, firstname: string, lastname: string, gender: string, age: number, educationlevel: string, mainsubject: string, language: string){
     this.router.navigate([`/view/${tutorId}/${firstname}/${lastname}/${gender}/${age}/${educationlevel}/${mainsubject}/${language}`])
   }
+
+  onSearch(filterValue:any){
+    console.log("am called")
+    const term = filterValue.target.value;
+    this.tutorService.searchProfiles(term);
+    this.profileUpdateSub = this.tutorService.getProfileUpdateListner().subscribe((response: User[]) => {
+      this.listTutors = response
+    })
+  }
 }

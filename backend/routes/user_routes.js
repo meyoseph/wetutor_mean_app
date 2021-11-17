@@ -82,16 +82,17 @@ const userArrayParent = [
   {"id":10,"email":"dmaclure9@seattletimes.com","password":"oDtzbufHnr","location": [], "user_type": "parent"}
 ]
 
-const profile = [{"firstname":"Erv","lastname":"Baynham","gender":"male","age":21,"educationlevel":"BCS","language":"English","status":"active"},
-{"firstname":"Letty","lastname":"Melanaphy","gender":"male","age":21,"educationlevel":"BCS","language":"English","status":"active"},
-{"firstname":"Gilemette","lastname":"Abramof","gender":"male","age":28,"educationlevel":"BCS","language":"English","status":"active"},
-{"firstname":"Winna","lastname":"Limb","gender":"male","age":21,"educationlevel":"BCS","language":"English","status":"active"},
-{"firstname":"Hartwell","lastname":"Szantho","gender":"female","age":22,"educationlevel":"BCS","language":"English","status":"active"},
-{"firstname":"Kore","lastname":"Selcraig","gender":"male","age":21,"educationlevel":"BCS","language":"English","status":"active"},
-{"firstname":"Marylee","lastname":"McBeith","gender":"female","age":21,"educationlevel":"BCS","language":"English","status":"active"},
-{"firstname":"Michail","lastname":"Elsbury","gender":"male","age":21,"educationlevel":"BCS","language":"English","status":"active"},
-{"firstname":"Suki","lastname":"Kop","gender":"female","age":25,"educationlevel":"BCS","language":"English","status":"active"},
-{"firstname":"Jo","lastname":"Blogg","gender":"male","age":24,"educationlevel":"BCS","language":"English","status":"active"}]
+const profile = [
+{"firstname":"Erv","lastname":"Baynham","gender":"male","age":21,"educationlevel":"BCS","language":"English","status":"active", "phonenumber":"602-646-7389", "mainsubject":"Ruby"},
+{"firstname":"Letty","lastname":"Melanaphy","gender":"male","age":21,"educationlevel":"BCS","language":"English","status":"active", "phonenumber":"913-804-2475", "mainsubject":"Golang"},
+{"firstname":"Gilemette","lastname":"Abramof","gender":"male","age":28,"educationlevel":"BCS","language":"English","status":"active", "phonenumber":"680-675-2649", "mainsubject":"java"},
+{"firstname":"Winna","lastname":"Limb","gender":"male","age":21,"educationlevel":"BCS","language":"English","status":"active", "phonenumber":"185-933-5761", "mainsubject":"React"},
+{"firstname":"Hartwell","lastname":"Szantho","gender":"female","age":22,"educationlevel":"BCS","language":"English","status":"active", "phonenumber":"925-152-3590", "mainsubject":"Angular"},
+{"firstname":"Kore","lastname":"Selcraig","gender":"male","age":21,"educationlevel":"BCS","language":"English","status":"active", "phonenumber":"975-568-1231", "mainsubject":"Node"},
+{"firstname":"Marylee","lastname":"McBeith","gender":"female","age":21,"educationlevel":"BCS","language":"English","status":"active", "phonenumber":"706-316-2659", "mainsubject":"Scala"},
+{"firstname":"Michail","lastname":"Elsbury","gender":"male","age":21,"educationlevel":"BCS","language":"English","status":"active", "phonenumber":"437-725-0429", "mainsubject":"Erlang"},
+{"firstname":"Suki","lastname":"Kop","gender":"female","age":25,"educationlevel":"BCS","language":"English","status":"active", "phonenumber":"148-569-7449", "mainsubject":"Elixir"},
+{"firstname":"Jo","lastname":"Blogg","gender":"male","age":24,"educationlevel":"BCS","language":"English","status":"active", "phonenumber":"252-117-1716", "mainsubject":"Reactnative"}]
 
 
 
@@ -117,7 +118,7 @@ router.post('/seed', (req, res) => {
 router.get("/search", async(req, res) => {
     await client.indices.refresh({ index: process.env.ELASTICINDEX })
     let query = { index: process.env.ELASTICINDEX }
-    if (req.query.seeker) query.q = `*${req.query.seeker}*`;
+    if (req.query.term) query.q = `*${req.query.term}*`;
     await client.search(query).then(response => {
         return res.status(200).json({
             users: response.body.hits.hits
