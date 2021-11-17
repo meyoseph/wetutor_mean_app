@@ -4,7 +4,7 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const { Client } = require('@elastic/elasticsearch');
 const { query } = require("express");
-
+const checkAuth = require('../middleware/check-auth');
 const User = require('../models/user');
 const { apiGetAll, apiGetOne, apiPost, apiDelete, apiUpload, addUser } = require("../controller/parent");
 
@@ -12,7 +12,7 @@ const client = new Client({ node: process.env.ES_ADDRESS })
 const router = express.Router();
 
 
-router.get('/tutors/', apiGetAll);
+router.get('/tutors', checkAuth, apiGetAll);
 // router.get('/search/:id', search);
 router.post('/signup', async (req, res, next) => {
   const response = await axios.get('https://geolocation-db.com/json/');
@@ -109,13 +109,13 @@ const usertuts = [{"id":1,"email":"goldis0@hud.gov","password":"12345","location
 
 
 
-router.post('/seed', (req, res) => {
+router.post('/seed', checkAuth, (req, res) => {
   User.insertMany(usertuts).then(response => {
     res.status(201).json({ result: response })
   });
 })
 
-router.get("/search", async(req, res) => {
+router.get("/search", checkAuth, async(req, res) => {
     await client.indices.refresh({ index: process.env.ELASTICINDEX })
     let query = { index: process.env.ELASTICINDEX }
     if (req.query.term) query.q = `*${req.query.term}*`;

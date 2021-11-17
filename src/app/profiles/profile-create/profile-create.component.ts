@@ -24,7 +24,8 @@ export class ProfileCreateComponent{
     if(form.invalid){
       return;
     }
-    this.profileService.addProfile(form.value.firstname,
+    this.profileService.addProfile(
+      form.value.firstname,
       form.value.lastname,
       form.value.age,
       form.value.gender,

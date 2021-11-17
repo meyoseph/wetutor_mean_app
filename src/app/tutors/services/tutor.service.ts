@@ -22,7 +22,6 @@ export class TutorService {
 
   getProfiles(){
     this.http.get<{ users: any[]}>('http://localhost:3000/api/users/search').subscribe( (response) => {
-      console.log(response)
       this.profiles = response.users;
       this.profileUpdated.next([...this.profiles]);
     })
@@ -30,7 +29,6 @@ export class TutorService {
 
   searchProfiles(term:any){
     this.http.get<{ users: any[]}>(`http://localhost:3000/api/users/search?term=${term}`).subscribe( (response) => {
-      console.log(response)
       this.profiles = response.users;
       this.profileUpdated.next([...this.profiles]);
     })

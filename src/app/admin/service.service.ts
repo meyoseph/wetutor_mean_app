@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, Subject } from 'rxjs';
+import {MatSnackBar} from '@angular/material/snack-bar';
 import { AuthService } from '../auth/auth.service';
 import {User} from './model/turor.model'
 import { TutorProfile } from './model/tutor-profile.model';
@@ -14,7 +15,7 @@ export class ServiceService {
   private users: any[] = [];
   private profileUpdated = new Subject<TutorProfile[]>();
 
-  constructor(private http: HttpClient, private authService: AuthService, private router: Router){
+  constructor(private http: HttpClient, private authService: AuthService, private router: Router, private _snackBar: MatSnackBar){
   }
 
   getProfiles(){
@@ -36,8 +37,12 @@ export class ServiceService {
     console.log(userId);
     this.http.put(`http://localhost:3000/api/admin/tutors/${userId}`, {}).subscribe(() => {
       this.getProfiles();
+      this.openSnackBar('Status Activated', 'Dismiss')
     })
   }
 
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action);
+  }
 
 }

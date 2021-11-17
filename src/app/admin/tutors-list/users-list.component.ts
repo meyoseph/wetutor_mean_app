@@ -41,7 +41,6 @@ export class UsersListComponent implements OnInit, OnDestroy {
   }
 
   onUpdate(userId:string){
-    console.log("am here")
     this.tutorService.onUpdate(userId);
   }
 
