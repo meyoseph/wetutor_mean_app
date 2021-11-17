@@ -1,5 +1,12 @@
 const User = require('../models/user');
-
+const { Client } = require('@elastic/elasticsearch');
+const client = new Client({
+  node: process.env.ES_ADDRESS,
+  auth: {
+      username: process.env.ES_USERNAME,
+      password: process.env.ES_PASSWORD
+  }
+})
 
 module.exports.getAllUserProfiles = (req, res) => {
   User.find({
@@ -23,13 +30,20 @@ module.exports.getUserById = async (req, res, next) => {
 
 module.exports.updateUserStatus = (req, res, next) => {
      User.findByIdAndUpdate(req.params.id, {
-        $set: {"profile.status" : 'Inactive'}
+        $set: {"profile.status" : 'active'}
       }, (error, data) => {
         if (error) {
           return next(error);
         } else {
           res.status(200).json({message : 'Student successfully updated!'})
         }
+      }).then(res => {
+        user = User.findOne({ _id: req.params.id })
+        client.index({
+          index: process.env.ELASTICINDEX,
+          id: user._id,
+          body: user
+        }).then(res => console.log(res)).catch(console.error)
       })
   }
 

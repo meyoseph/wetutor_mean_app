@@ -12,3 +12,7 @@ table {
    color: black;
   font-weight: bold;
   }
+
+  .main-div{
+    height: 100vh;
+}
