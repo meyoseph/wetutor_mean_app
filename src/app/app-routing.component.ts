@@ -17,7 +17,7 @@ const routes: Routes = [
   { path: 'profile', component: ProfileCreateComponent, canActivate: [AuthGuard] },
   {path: 'view/:id', component: ViewTutorsComponent, canActivate: [AuthGuard]},
   { path: 'admin', component: UsersListComponent, canActivate: [AuthGuard]},
-  {path:'admin/view/:id',component:UserDetailComponent, canActivate: [AuthGuard]},
+  {path:'admin/view/:id/:firstname/:lastname/:gender/:age/:educationlevel/:mainsubject/:language',component:UserDetailComponent, canActivate: [AuthGuard]},
   { path: 'profile/detail/:id', component: ProfileDetailComponent, canActivate: [AuthGuard]},
   {path: 'parent', component: ListTutorsComponent, canActivate: [AuthGuard]} ,
   {path: 'view/:id/:firstname/:lastname/:gender/:age/:educationlevel/:mainsubject/:language', component: ViewTutorsComponent, canActivate: [AuthGuard]},

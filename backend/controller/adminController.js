@@ -28,7 +28,34 @@ module.exports.getUserById = async (req, res, next) => {
   })
 }
 
-module.exports.updateUserStatus = (req, res, next) => {
+module.exports.updateUserStatus = async (req, res, next) => {
+    let user;
+    User.findOne({ _id: req.params.id }).then(res => {
+      this.user = res;
+      newUser = {
+        email: this.user.email,
+        password: this.user.password,
+        phonenumber: this.user.password,
+        location: this.user.location,
+        profile: {
+          firstname: this.user.profile.firstname,
+          lastname: this.user.profile.lastname,
+          gender: this.user.profile.gender,
+          age: parseInt(this.user.profile.age),
+          educationlevel: this.user.profile.educationlevel,
+          mainsubject: this.user.profile.mainsubject,
+          language: this.user.profile.language,
+          status: 'active'
+        },
+        user_type: this.user.user_type
+      }
+      client.index({
+        index: process.env.ELASTICINDEX,
+        id: this.user._id,
+        body: newUser
+      }).then(res => console.log(res)).catch(console.error)
+    });
+
      User.findByIdAndUpdate(req.params.id, {
         $set: {"profile.status" : 'active'}
       }, (error, data) => {
@@ -37,13 +64,6 @@ module.exports.updateUserStatus = (req, res, next) => {
         } else {
           res.status(200).json({message : 'Student successfully updated!'})
         }
-      }).then(res => {
-        user = User.findOne({ _id: req.params.id })
-        client.index({
-          index: process.env.ELASTICINDEX,
-          id: user._id,
-          body: user
-        }).then(res => console.log(res)).catch(console.error)
       })
   }
 

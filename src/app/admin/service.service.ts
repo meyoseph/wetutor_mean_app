@@ -7,7 +7,7 @@ import {User} from './model/turor.model'
 import { TutorProfile } from './model/tutor-profile.model';
 
 @Injectable({
-  providedIn: 'root' 
+  providedIn: 'root'
 })
 export class ServiceService {
   baseUrl: string = 'http://localhost:3000/api/profiles/';
@@ -22,7 +22,6 @@ export class ServiceService {
     .subscribe((profileData) => {
       this.users = profileData.users;
       this.profileUpdated.next([...this.users])
-     //console.log(this.users);
     });
   }
 
@@ -32,5 +31,13 @@ export class ServiceService {
   viewUser(id: string){
     return this.http.get(this.baseUrl + 'users/' + id)
   }
-  
+
+  onUpdate(userId:string){
+    console.log(userId);
+    this.http.put(`http://localhost:3000/api/admin/tutors/${userId}`, {}).subscribe(() => {
+      this.getProfiles();
+    })
+  }
+
+
 }

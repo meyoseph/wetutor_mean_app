@@ -34,19 +34,23 @@ export class UsersListComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.tutorService.getProfiles();
     this.profilesSub = this.tutorService.getProfileUpdateListener().subscribe((profiles: any[]) => {
-
       this.profiles = profiles
       this.dataSource = this.profiles;
       console.log(this.dataSource );
     });
   }
 
+  onUpdate(userId:string){
+    console.log("am here")
+    this.tutorService.onUpdate(userId);
+  }
+
   ngOnDestroy(){
     this.profilesSub.unsubscribe();
   }
 
-  onDetail(tutorId: string) {
-    this.router.navigate([`/view/${tutorId}`]);
+  onDetail(tutorId: string, firstname: string, lastname: string, gender: string, age: number, educationlevel: string, mainsubject: string, language: string) {
+    this.router.navigate([`/admin/view/${tutorId}/${firstname}/${lastname}/${gender}/${age}/${educationlevel}/${mainsubject}/${language}`]);
   }
 
   deleteUser(userId: number) {
@@ -54,5 +58,5 @@ export class UsersListComponent implements OnInit, OnDestroy {
   }
   removeUser(index: number){
     this.dataSource.splice(index, 1);
-  }   
+  }
 }
